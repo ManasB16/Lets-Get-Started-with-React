@@ -2,24 +2,51 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState("");
+  // const [enteredTitle, setEnteredTitle] = useState("");
+  // const [enteredAmount, setEnteredAmount] = useState("");
+  // const [enteredDate, setEnteredDate] = useState("");
+
+  const [userInput, setUserInput] = useState({
+    enteredTitle: "",
+    enteredAmount: "",
+    enteredDate: "",
+  });
 
   function handleTitle(e) {
-    setEnteredTitle(e.target.value);
+    // console.log(e.target.value);
+    setUserInput((prev) => {
+      return {
+        ...prev,
+        enteredTitle: e.target.value,
+      };
+    });
   }
-  const [enteredAmount, setEnteredAmount] = useState("");
 
   function handleAmount(e) {
-    setEnteredAmount(e.target.value);
+    setUserInput((prev) => {
+      return {
+        ...prev,
+        enteredAmount: e.target.value,
+      };
+    });
   }
-  const [enteredDate, setEnteredDate] = useState("");
 
   function handleDate(e) {
-    setEnteredDate(e.target.value);
+    setUserInput((prev) => {
+      return {
+        ...prev,
+        enteredDate: e.target.value,
+      };
+    });
+  }
+
+  function onSubmit(e) {
+    // e.preventDefault();
+    console.log(userInput);
   }
 
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <div className="new-expense_controls">
         <div className="new-expense_control">
           <label htmlFor="title">Title</label>
