@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ formFunction }) => {
   // const [enteredTitle, setEnteredTitle] = useState("");
   // const [enteredAmount, setEnteredAmount] = useState("");
   // const [enteredDate, setEnteredDate] = useState("");
@@ -42,7 +42,12 @@ const ExpenseForm = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(userInput);
+    const newUserInput = {
+      title: userInput.enteredTitle,
+      amount: userInput.enteredAmount,
+      date: new Date(userInput.enteredDate),
+    };
+    formFunction(newUserInput);
     setUserInput({
       enteredTitle: "",
       enteredAmount: "",

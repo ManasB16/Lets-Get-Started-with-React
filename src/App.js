@@ -26,6 +26,7 @@
 
 import React from "react";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
   const expenses = [
@@ -59,9 +60,14 @@ const App = () => {
     },
   ];
 
+  function addData(data) {
+    expenses.push(data);
+    console.log(data);
+  }
+
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <NewExpense addFunction={addData} />
       {expenses.map((expense) => (
         <ExpenseItem
           key={expense.id} // Don't forget to set a unique key when mapping components
