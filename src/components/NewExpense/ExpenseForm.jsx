@@ -41,8 +41,13 @@ const ExpenseForm = () => {
   }
 
   function onSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(userInput);
+    setUserInput({
+      enteredTitle: "",
+      enteredAmount: "",
+      enteredDate: "",
+    });
   }
 
   return (
@@ -50,11 +55,21 @@ const ExpenseForm = () => {
       <div className="new-expense_controls">
         <div className="new-expense_control">
           <label htmlFor="title">Title</label>
-          <input type="text" id="title" onChange={handleTitle} />
+          <input
+            type="text"
+            value={userInput.enteredTitle}
+            id="title"
+            onChange={handleTitle}
+          />
         </div>
         <div className="new-expense_control">
           <label htmlFor="amount">Amount</label>
-          <input type="Number" id="amount" onChange={handleAmount} />
+          <input
+            type="Number"
+            id="amount"
+            onChange={handleAmount}
+            value={userInput.enteredAmount}
+          />
         </div>
         <div className="new-expense_control">
           <label htmlFor="date">Date</label>
@@ -64,6 +79,7 @@ const ExpenseForm = () => {
             max="2024-12-31"
             id="date"
             onChange={handleDate}
+            value={userInput.enteredDate}
           />
         </div>
       </div>
