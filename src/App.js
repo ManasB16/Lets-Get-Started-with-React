@@ -24,12 +24,12 @@
 
 // export default App;
 
-import React from "react";
+import React, { useState } from "react";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     {
       id: 1,
       title: "Food",
@@ -58,11 +58,13 @@ const App = () => {
       location: "Delhi",
       date: new Date(2023, 10, 11),
     },
-  ];
+  ]);
 
   function addData(data) {
-    expenses.push(data);
     console.log(data);
+    setExpenses((prev) => {
+      return [...prev, data];
+    });
   }
 
   return (
