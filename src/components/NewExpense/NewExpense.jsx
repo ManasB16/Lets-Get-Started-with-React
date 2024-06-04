@@ -2,10 +2,10 @@ import React from "react";
 import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css";
 
-const NewExpense = ({ addFunction }) => {
+const NewExpense = ({ onAddExpense }) => {
   function getFormData(data) {
     const formData = { ...data, id: Math.random().toString() };
-    addFunction(formData);
+    onAddExpense(formData);
   }
 
   return (

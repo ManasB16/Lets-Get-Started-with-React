@@ -44,7 +44,7 @@ const ExpenseForm = ({ formFunction }) => {
     e.preventDefault();
     const newUserInput = {
       title: userInput.enteredTitle,
-      amount: userInput.enteredAmount,
+      price: userInput.enteredAmount,
       date: new Date(userInput.enteredDate),
     };
     formFunction(newUserInput);
@@ -57,8 +57,8 @@ const ExpenseForm = ({ formFunction }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="new-expense_controls">
-        <div className="new-expense_control">
+      <div className="new-expense__controls">
+        <div className="new-expense__control">
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -67,7 +67,7 @@ const ExpenseForm = ({ formFunction }) => {
             onChange={handleTitle}
           />
         </div>
-        <div className="new-expense_control">
+        <div className="new-expense__control">
           <label htmlFor="amount">Amount</label>
           <input
             type="Number"
@@ -76,7 +76,7 @@ const ExpenseForm = ({ formFunction }) => {
             value={userInput.enteredAmount}
           />
         </div>
-        <div className="new-expense_control">
+        <div className="new-expense__control">
           <label htmlFor="date">Date</label>
           <input
             type="date"
@@ -88,7 +88,7 @@ const ExpenseForm = ({ formFunction }) => {
           />
         </div>
       </div>
-      <div className="new-expense_actions">
+      <div className="new-expense__actions">
         <button type="submit">Add Expense</button>
       </div>
     </form>

@@ -1,84 +1,29 @@
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
-
 import React, { useState } from "react";
-import ExpenseItem from "./components/Expenses/ExpenseItem";
+import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
-const App = () => {
-  const [expenses, setExpenses] = useState([
-    {
-      id: 1,
-      title: "Food",
-      amount: 10,
-      location: "Delhi",
-      date: new Date(2023, 10, 12),
-    },
-    {
-      id: 2,
-      title: "Sweets",
-      amount: 100,
-      location: "Delhi",
-      date: new Date(2023, 8, 9),
-    },
-    {
-      id: 3,
-      title: "Chocolates",
-      amount: 50,
-      location: "Delhi",
-      date: new Date(2023, 9, 10),
-    },
-    {
-      id: 4,
-      title: "Butter",
-      amount: 70,
-      location: "Delhi",
-      date: new Date(2023, 10, 11),
-    },
-  ]);
+const DUMMY_EXPENSES = [
+  { id: 1, title: "Insurance", date: new Date(2023, 7, 15), price: 100 },
+  { id: 2, title: "Book", date: new Date(2024, 8, 25), price: 10 },
+  { id: 7, title: "Book", date: new Date(2024, 8, 25), price: 10 },
+  { id: 3, title: "Pen", date: new Date(2025, 2, 10), price: 1 },
+  { id: 4, title: "Laptop", date: new Date(2022, 9, 17), price: 200 },
+];
 
-  function addData(data) {
-    console.log(data);
-    setExpenses((prev) => {
-      return [...prev, data];
+const App = () => {
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+
+  const addExpenseHandler = (expense) => {
+    console.log(expense);
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
     });
-  }
+  };
 
   return (
     <div>
-      <NewExpense addFunction={addData} />
-      {expenses.map((expense) => (
-        <ExpenseItem
-          key={expense.id} // Don't forget to set a unique key when mapping components
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-          location={expense.location}
-        />
-      ))}
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses expenses={expenses} />
     </div>
   );
 };
