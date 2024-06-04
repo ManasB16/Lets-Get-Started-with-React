@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
+import Form from "./Form";
 
 const ExpenseForm = ({ formFunction }) => {
   // const [enteredTitle, setEnteredTitle] = useState("");
@@ -11,6 +12,8 @@ const ExpenseForm = ({ formFunction }) => {
     enteredAmount: "",
     enteredDate: "",
   });
+
+  const [displayForm, setDisplayForm] = useState(false);
 
   function handleTitle(e) {
     // console.log(e.target.value);
@@ -53,45 +56,27 @@ const ExpenseForm = ({ formFunction }) => {
       enteredAmount: "",
       enteredDate: "",
     });
+    setDisplayForm(false);
+  }
+
+  function setDisplayFormTrue() {
+    setDisplayForm(true);
+  }
+  function setDisplayFormFalse() {
+    setDisplayForm(false);
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className="new-expense__controls">
-        <div className="new-expense__control">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            value={userInput.enteredTitle}
-            id="title"
-            onChange={handleTitle}
-          />
-        </div>
-        <div className="new-expense__control">
-          <label htmlFor="amount">Amount</label>
-          <input
-            type="Number"
-            id="amount"
-            onChange={handleAmount}
-            value={userInput.enteredAmount}
-          />
-        </div>
-        <div className="new-expense__control">
-          <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            min="2023=01-01"
-            max="2024-12-31"
-            id="date"
-            onChange={handleDate}
-            value={userInput.enteredDate}
-          />
-        </div>
-      </div>
-      <div className="new-expense__actions">
-        <button type="submit">Add Expense</button>
-      </div>
-    </form>
+    <Form
+      submitFunc={onSubmit}
+      userInput={userInput}
+      handleTitle={handleTitle}
+      handleAmount={handleAmount}
+      handleDate={handleDate}
+      trueHandler={setDisplayFormTrue}
+      falseHandler={setDisplayFormFalse}
+      displayForm={displayForm}
+    />
   );
 };
 
